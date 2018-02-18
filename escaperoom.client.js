@@ -106,7 +106,7 @@ escaperoom = {
     updateFirebase: function () {
         if (escaperoom.value == "&nbsp") {
             escaperoom.db.collection("puzzles").doc(escaperoom.puzzle).set({
-                value: ""
+                value: "."
             }).catch(function(error) {
                 console.error("Error writing document: ", error);
             });
@@ -120,6 +120,8 @@ escaperoom = {
     },
     updatePuzzle: function (puzzle_id) {
         if (typeof document.getElementById("type_" + puzzle_id) != "undefined") {
+            escaperoom.resetValue()
+            document.getElementById(escaperoom.puzzle + "_display").innerHTML = "&nbsp"
             document.getElementById("type_" + escaperoom.puzzle).setAttribute("hidden", "hidden")
             escaperoom.puzzle = puzzle_id
             document.getElementById("type_" + escaperoom.puzzle).removeAttribute("hidden");

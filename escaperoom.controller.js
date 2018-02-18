@@ -10,6 +10,7 @@ var configg = {
     messagingSenderId: "974975529205"
 };
 
+
 escaperoom = {
     value: "",
     puzzle: "nothing",
@@ -39,25 +40,40 @@ escaperoom = {
     resetValue: function () {
 
     },
-    displayValue: function (element_id) {
-        if (typeof document.getElementById(element_id) != "undefined") {
-            document.getElementById(element_id).innerHTML = escaperoom.value
+    displayValueFromFirebase: function (puzzle_id, element_id, type) {
+        if (typeof document.getElementById("type_" + puzzle_id) != "undefined" && typeof document.getElementById(element_id) != "undefined" && type) {
+            escaperoom.db.collection("puzzles").doc(puzzle_id).onSnapshot(function(doc) {
+                if (type == "string") {
+                    escaperoom.displayValue(element_id, doc.data().value)
+                } else if (type == "color") {
+                    escaperoom.displayColor(element_id, doc.data().value)
+                } else {
+                    throw Error("Expecting value of type 'string [display_type]' at position '3'");
+                }
+            });
         } else {
-            throw Error("Expecting value of type 'string [element_id]' at position '1'");
+            throw Error("Expecting values of types 'string [puzzle_id]', 'string [element_id]' and 'string [display_type]' at position '1', '2' and '3' respectively");
         } 
     },
-    displayColor: function (element_id) {
-        if (typeof document.getElementById(element_id) != "undefined") {
-            color_array = escaperoom.value.split("|");
+    displayValue: function (element_id, value) {
+        if (typeof document.getElementById(element_id) != "undefined" && value) {
+            document.getElementById(element_id).innerHTML = value
+        } else {
+            throw Error("Expecting values of types 'string [element_id]' and 'string [encoded_value]' at position '1' and '2' respectively");
+        } 
+    },
+    displayColor: function (element_id, value) {
+        if (typeof document.getElementById(element_id) != "undefined" && value) {
+            color_array = value.split("|");
             color_final = "";
             if (color_array.length <= 1) {
-                document.getElementById(element_id).innerHTML = "&nbsp"
+                document.getElementById(element_id).innerHTML = "."
             } else {
                 for (let i = 0; i < color_array.length - 1; i++) {
                     if (/^#[0-9A-F]{6}$/i.test(color_array[i])) {
                         color_final += "<span style='color: " + color_array[i] + ";'>&#9673</span>&nbsp"
                     } else {
-                        throw Error("Expecting variable 'escaperoom.value' to only contain 'hex-colors' seperated with '|' at place " + i);
+                        throw Error("Expecting variable 'value' to only contain 'hex-colors' seperated with '|' at place " + i);
                     }
                     
                     if (i == (color_array.length - 2)) {
@@ -66,7 +82,7 @@ escaperoom = {
                 }
             }
         } else {
-            throw Error("Expecting value of type 'string [element_id]' at position '1'");
+            throw Error("Expecting values of types 'string [element_id]' and 'string [encoded_value]' at position '1' and '2' respectively");
         } 
     },
     initializeFirebase: function (config) {
@@ -81,3 +97,6 @@ escaperoom = {
 }
 
 escaperoom.initializeFirebase(configg)
+
+escaperoom.displayValueFromFirebase("number_keypad", "display_number_keypad", "string")
+escaperoom.displayValueFromFirebase("color_keypad", "display_color_keypad", "color")
