@@ -15,16 +15,19 @@
 </head>
 <body>
     <table style="width: 100%;">
-        <col style="width: 33.3%">
-        <col style="width: 33.3%">
-        <col style="width: 33.3%">
+        <col style="width: 25%">
+        <col style="width: 25%">
+        <col style="width: 25%">
+        <col style="width: 25%">
         <tr>
             <td><div id="type_nothing" class="types selected" onclick="escaperoom.setPuzzle('nothing')">Nothing</div></td>
+            <td><div id="type_unlocked" class="types" onclick="escaperoom.setPuzzle('unlocked')">Unlocked</div></td>
             <td><div id="type_number_keypad" class="types" onclick="escaperoom.setPuzzle('number_keypad')">Number Keypad</div></td>
             <td><div id="type_color_keypad" class="types" onclick="escaperoom.setPuzzle('color_keypad')">Color Keypad</div></td>
         </tr>
         <tr>
             <td id="display_nothing">N/A</td>
+            <td id="display_unlocked">N/A</td>
             <td id="display_number_keypad"></td>
             <td id="display_color_keypad"></td>
         </tr>
