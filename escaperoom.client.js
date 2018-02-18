@@ -164,5 +164,18 @@ escaperoom = {
             throw Error("Expecting value of type 'array' of types 'string [element_id]' at position '1'"); 
         }
     },
+    ios_scroll: {
+        freezeVp: function(e) {
+            e.preventDefault();
+        },
+        stopBodyScrolling: function (bool) {
+            if (bool === true) {
+                document.getElementsByTagName("body")[0].addEventListener("touchmove", escaperoom.ios_scroll.freezeVp, false);
+            } else {
+                document.getElementsByTagName("body")[0].removeEventListener("touchmove", escaperoom.ios_scroll.freezeVp, false);
+            }
+        }
+    }
 
 }
+
