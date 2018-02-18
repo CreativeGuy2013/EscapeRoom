@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EscapeRoom client</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-firestore.js"></script>
+    <script src="escaperoom.client.js"></script>
+</head>
+<body class="parent unselectable">
+    <div id="snapshot_command_parent">
+        <script id="snapshot_command">
+            escaperoom.initializeFirebase(configg)
+        </script>
+    </div>
+    <center>
+        <!--No Puzzle-->
+        <div id="type_nothing" class="keypad-table child">
+                <h1>There is nothing to see here.</h1>
+            </div>
+        <!--Number Keypad-->
+        <div id="type_number_keypad" class="keypad-table child" hidden>
+            <div class="">
+                <div id="number_keypad_display" class="keypad-display">&nbsp</div>
+                <table style="width: 98%; margin: 1%;" >
+                    <col width="33.3%">
+                    <col width="33.3%">
+                    <col width="33.3%">
+                    <tr>
+                        <td class="keypad" onclick="escaperoom.addToValue('1');escaperoom.displayValue('number_keypad_display');" style="text-align: center">1</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('2');escaperoom.displayValue('number_keypad_display');" style="text-align: center">2</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('3');escaperoom.displayValue('number_keypad_display');" style="text-align: center">3</td>
+                    </tr>
+                    <tr>
+                        <td class="keypad" onclick="escaperoom.addToValue('4');escaperoom.displayValue('number_keypad_display');" style="text-align: center">4</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('5');escaperoom.displayValue('number_keypad_display');" style="text-align: center">5</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('6');escaperoom.displayValue('number_keypad_display');" style="text-align: center">6</td>
+                    </tr>
+                    <tr>
+                        <td class="keypad" onclick="escaperoom.addToValue('7');escaperoom.displayValue('number_keypad_display');" style="text-align: center">7</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('8');escaperoom.displayValue('number_keypad_display');" style="text-align: center">8</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('9');escaperoom.displayValue('number_keypad_display');" style="text-align: center">9</td>
+                    </tr>
+                    <tr>
+                        <td class="keypad" onclick="escaperoom.backspaceValue();escaperoom.displayValue('number_keypad_display');" style="text-align: center"><--</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('0');escaperoom.displayValue('number_keypad_display');" style="text-align: center">0</td>
+                        <td class="keypad" onclick="escaperoom.updateFirebase()" style="text-align: center">Confirm</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!--Color Keypad-->
+        <div id="type_color_keypad" class="keypad-table child" hidden>
+            <div class="">
+                <div id="color_keypad_display" class="keypad-display">&nbsp</div>
+                <table style="width: 98%; margin: 1%;" >
+                    <col width="50%">
+                    <col width="50%">
+                    <tr>
+                        <td class="keypad" onclick="escaperoom.addToValue('#ff0000|');escaperoom.displayColor('color_keypad_display');" style="text-align: center; background: red; color: darkred;">Red</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('#00ff00|');escaperoom.displayColor('color_keypad_display');" style="text-align: center; background: green; color: darkgreen;">Green</td>
+                    </tr>
+                    <tr>
+                        <td class="keypad" onclick="escaperoom.addToValue('#0000ff|');escaperoom.displayColor('color_keypad_display');" style="text-align: center; background: blue; color: darkblue;">Blue</td>
+                        <td class="keypad" onclick="escaperoom.addToValue('#ffee00|');escaperoom.displayColor('color_keypad_display');" style="text-align: center; background: rgb(255, 255, 77); color: rgb(255, 196, 0);">Yellow</td>
+                    </tr>
+                    <tr>
+                        <td class="keypad" onclick="escaperoom.backspaceColorValue();escaperoom.displayColor('color_keypad_display');" style="text-align: center"><--</td>
+                        <td class="keypad" onclick="escaperoom.updateFirebase()" style="text-align: center">Confirm</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

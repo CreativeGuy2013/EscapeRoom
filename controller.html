@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EscapeRoom Controller</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-firestore.js"></script>
+    <script src="escaperoom.controller.js"></script>
+</head>
+<body>
+    <table style="width: 100%;">
+        <col style="width: 33.3%">
+        <col style="width: 33.3%">
+        <col style="width: 33.3%">
+        <tr>
+            <td><div id="type_nothing" class="types selected" onclick="escaperoom.setPuzzle('nothing')">Nothing</div></td>
+            <td><div id="type_number_keypad" class="types" onclick="escaperoom.setPuzzle('number_keypad')">Number Keypad</div></td>
+            <td><div id="type_color_keypad" class="types" onclick="escaperoom.setPuzzle('color_keypad')">Color Keypad</div></td>
+        </tr>
+    </table>
+</body>
+</html>
