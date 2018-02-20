@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>New Ticket and Signature</title>
+
+        <link rel="stylesheet" href="assets/signature/css/signature-pad.css">
+
+        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-firestore.js"></script>    
+        <script src="escaperoom.signature.js"></script>
+    </head>
+    <body>
+        <center id="wait">
+            <h1>Sucess.</h1>
+        </center>
+        <div hidden id="signature-pad" class="signature-pad hidden">
+            <h1>Welkom OC<span id="nummer">[OCNUMMER]</span></h1>
+            <div class="signature-pad--body">
+                <canvas></canvas>
+            </div>
+            <div class="signature-pad--footer">
+                <div class="description">Ondertekenen en bevestigen</div>
+                <div class="signature-pad--actions">
+                    <div>
+                        <button type="button" class="button clear" data-action="clear">Leeg maken</button>
+                    </div>
+                    <div>
+                        <button type="button" class="button save" data-action="save">Bevestigen</button>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <script src="assets/signature/js/signature_pad.js"></script>
+        <script src="assets/signature/js/app.js"></script>
+    </body>
+</html>
